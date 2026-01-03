@@ -11,11 +11,24 @@
             box-sizing: border-box;
         }
 
+        :root {
+            --bg-primary: #0d1117;
+            --bg-secondary: #161b22;
+            --bg-tertiary: #21262d;
+            --text-primary: #e6edf3;
+            --text-secondary: #8b949e;
+            --border-color: #30363d;
+            --accent-mint: #3fb950;
+            --accent-blue: #58a6ff;
+            --accent-orange: #f78166;
+            --accent-purple: #a371f7;
+        }
+
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans KR', sans-serif;
             line-height: 1.6;
-            color: #333;
-            background-color: #fff;
+            color: var(--text-primary);
+            background-color: var(--bg-primary);
         }
 
         .container {
@@ -26,11 +39,12 @@
 
         /* Navigation */
         nav {
-            background: #1a1a2e;
+            background: var(--bg-secondary);
             padding: 15px 0;
             position: sticky;
             top: 0;
             z-index: 100;
+            border-bottom: 1px solid var(--border-color);
         }
 
         nav ul {
@@ -42,34 +56,44 @@
         }
 
         nav a {
-            color: #fff;
+            color: var(--text-secondary);
             text-decoration: none;
             font-weight: 500;
             padding: 8px 16px;
-            border-radius: 5px;
-            transition: background 0.3s;
+            border-radius: 6px;
+            transition: all 0.2s;
         }
 
-        nav a:hover, nav a.active {
-            background: #4a4a6a;
+        nav a:hover {
+            color: var(--text-primary);
+            background: var(--bg-tertiary);
+        }
+
+        nav a.active {
+            color: var(--accent-mint);
+            background: rgba(63, 185, 80, 0.1);
         }
 
         /* Header */
         header {
             text-align: center;
-            padding: 40px 20px;
-            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
-            color: #fff;
+            padding: 50px 20px;
+            background: var(--bg-secondary);
+            border-bottom: 1px solid var(--border-color);
         }
 
         header h1 {
             font-size: 2rem;
             margin-bottom: 10px;
+            background: linear-gradient(135deg, var(--accent-mint), var(--accent-blue));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
 
         header .subtitle {
             font-size: 1rem;
-            color: #a0a0c0;
+            color: var(--text-secondary);
         }
 
         /* Schedule */
@@ -78,34 +102,42 @@
         }
 
         .schedule-section h2 {
-            color: #1a1a2e;
+            color: var(--text-primary);
             margin-bottom: 25px;
-            font-size: 1.5rem;
-            border-left: 4px solid #4a4a6a;
-            padding-left: 15px;
+            font-size: 1.3rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-family: 'Courier New', monospace;
+        }
+
+        .schedule-section h2::before {
+            content: "#";
+            color: var(--accent-mint);
         }
 
         .schedule-table {
             width: 100%;
             border-collapse: collapse;
             margin-bottom: 40px;
-            background: #fff;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
             border-radius: 10px;
             overflow: hidden;
         }
 
         .schedule-table th {
-            background: #1a1a2e;
-            color: #fff;
+            background: var(--bg-tertiary);
+            color: var(--text-primary);
             padding: 15px;
             text-align: left;
             font-weight: 600;
+            border-bottom: 1px solid var(--border-color);
         }
 
         .schedule-table td {
             padding: 15px;
-            border-bottom: 1px solid #eee;
+            border-bottom: 1px solid var(--border-color);
         }
 
         .schedule-table tr:last-child td {
@@ -113,59 +145,68 @@
         }
 
         .schedule-table tr:hover {
-            background: #f8f9fa;
+            background: var(--bg-tertiary);
         }
 
         .time {
             font-weight: 600;
-            color: #4a4a6a;
+            color: var(--accent-blue);
             white-space: nowrap;
+            font-family: 'Courier New', monospace;
         }
 
         .speaker {
             font-weight: 600;
+            color: var(--text-primary);
         }
 
         .affiliation {
-            color: #666;
+            color: var(--text-secondary);
             font-size: 0.9rem;
         }
 
         .topic {
-            color: #333;
+            color: var(--text-primary);
         }
 
         .break-row {
-            background: #f0f0f0 !important;
+            background: var(--bg-tertiary) !important;
             text-align: center;
         }
 
         .break-row td {
-            color: #666;
+            color: var(--text-secondary);
             font-style: italic;
         }
 
         .private-note {
             font-size: 0.8rem;
-            color: #999;
+            color: var(--accent-orange);
         }
 
         /* Staff Section */
         .staff-section {
             padding: 40px 20px;
-            background: #f8f9fa;
+            background: var(--bg-secondary);
+            border-top: 1px solid var(--border-color);
         }
 
         .staff-section h2 {
-            color: #1a1a2e;
+            color: var(--text-primary);
             margin-bottom: 30px;
-            font-size: 1.5rem;
+            font-size: 1.3rem;
             text-align: center;
+            font-family: 'Courier New', monospace;
+        }
+
+        .staff-section h2::before {
+            content: "# ";
+            color: var(--accent-mint);
         }
 
         .staff-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
             gap: 25px;
             max-width: 700px;
             margin: 0 auto;
@@ -176,44 +217,42 @@
         }
 
         .staff-avatar {
-            width: 80px;
-            height: 80px;
+            width: 70px;
+            height: 70px;
             border-radius: 50%;
-            background: linear-gradient(135deg, #4a4a6a, #1a1a2e);
+            background: linear-gradient(135deg, var(--accent-mint), var(--accent-blue));
             display: flex;
             align-items: center;
             justify-content: center;
             margin: 0 auto 10px;
-            color: #fff;
-            font-size: 1.5rem;
+            color: var(--bg-primary);
+            font-size: 1.3rem;
             font-weight: 600;
+            border: 2px solid var(--border-color);
         }
 
         .staff-name {
-            font-weight: 600;
-            color: #333;
+            font-weight: 500;
+            color: var(--text-primary);
+            font-size: 0.9rem;
         }
 
         /* Footer */
         footer {
-            background: #1a1a2e;
-            color: #a0a0c0;
+            background: var(--bg-secondary);
+            border-top: 1px solid var(--border-color);
+            color: var(--text-secondary);
             text-align: center;
             padding: 30px 20px;
         }
 
-        /* Archive Notice */
-        .archive-notice {
-            background: #fff3cd;
-            border: 1px solid #ffc107;
-            color: #856404;
-            padding: 15px 20px;
-            text-align: center;
-            font-size: 0.9rem;
+        footer p {
+            margin-bottom: 8px;
         }
 
-        .archive-notice a {
-            color: #856404;
+        footer .hashtag {
+            color: var(--accent-mint);
+            font-family: 'Courier New', monospace;
         }
 
         /* Responsive */
@@ -238,10 +277,6 @@
     </style>
 </head>
 <body>
-    <div class="archive-notice">
-        이 페이지는 Langcon 2024 행사의 아카이브입니다. 원본: <a href="https://2024langcon.oopy.io/langcon2024" target="_blank">2024langcon.oopy.io</a>
-    </div>
-
     <nav>
         <ul>
             <li><a href="index.html">Langcon2024</a></li>
@@ -444,7 +479,7 @@
 
     <footer>
         <p>Langcon 2024 - 생성 모델 튜닝 어디까지 왔나?</p>
-        <p>#2024LangCon</p>
+        <p class="hashtag">#2024LangCon</p>
     </footer>
 </body>
 </html>

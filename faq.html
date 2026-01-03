@@ -11,11 +11,24 @@
             box-sizing: border-box;
         }
 
+        :root {
+            --bg-primary: #0d1117;
+            --bg-secondary: #161b22;
+            --bg-tertiary: #21262d;
+            --text-primary: #e6edf3;
+            --text-secondary: #8b949e;
+            --border-color: #30363d;
+            --accent-mint: #3fb950;
+            --accent-blue: #58a6ff;
+            --accent-orange: #f78166;
+            --accent-purple: #a371f7;
+        }
+
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans KR', sans-serif;
             line-height: 1.6;
-            color: #333;
-            background-color: #fff;
+            color: var(--text-primary);
+            background-color: var(--bg-primary);
         }
 
         .container {
@@ -26,11 +39,12 @@
 
         /* Navigation */
         nav {
-            background: #1a1a2e;
+            background: var(--bg-secondary);
             padding: 15px 0;
             position: sticky;
             top: 0;
             z-index: 100;
+            border-bottom: 1px solid var(--border-color);
         }
 
         nav ul {
@@ -42,28 +56,38 @@
         }
 
         nav a {
-            color: #fff;
+            color: var(--text-secondary);
             text-decoration: none;
             font-weight: 500;
             padding: 8px 16px;
-            border-radius: 5px;
-            transition: background 0.3s;
+            border-radius: 6px;
+            transition: all 0.2s;
         }
 
-        nav a:hover, nav a.active {
-            background: #4a4a6a;
+        nav a:hover {
+            color: var(--text-primary);
+            background: var(--bg-tertiary);
+        }
+
+        nav a.active {
+            color: var(--accent-mint);
+            background: rgba(63, 185, 80, 0.1);
         }
 
         /* Header */
         header {
             text-align: center;
-            padding: 40px 20px;
-            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
-            color: #fff;
+            padding: 50px 20px;
+            background: var(--bg-secondary);
+            border-bottom: 1px solid var(--border-color);
         }
 
         header h1 {
             font-size: 2rem;
+            background: linear-gradient(135deg, var(--accent-mint), var(--accent-blue));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
 
         /* FAQ Section */
@@ -72,51 +96,65 @@
         }
 
         .faq-item {
-            background: #fff;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
             border-radius: 10px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-            margin-bottom: 20px;
+            margin-bottom: 16px;
             overflow: hidden;
+            transition: all 0.3s;
+        }
+
+        .faq-item:hover {
+            border-color: var(--accent-blue);
         }
 
         .faq-question {
-            background: #f8f9fa;
-            padding: 20px 25px;
+            background: var(--bg-tertiary);
+            padding: 18px 22px;
             font-weight: 600;
-            color: #1a1a2e;
-            border-left: 4px solid #4a4a6a;
-            cursor: pointer;
-            transition: background 0.3s;
-        }
-
-        .faq-question:hover {
-            background: #eef0f2;
+            color: var(--text-primary);
+            border-left: 3px solid var(--accent-mint);
         }
 
         .faq-question::before {
             content: "Q. ";
-            color: #4a4a6a;
+            color: var(--accent-mint);
             font-weight: 700;
+            font-family: 'Courier New', monospace;
         }
 
         .faq-answer {
-            padding: 20px 25px;
-            color: #555;
-            border-top: 1px solid #eee;
+            padding: 18px 22px;
+            color: var(--text-secondary);
+            border-top: 1px solid var(--border-color);
         }
 
         .faq-answer::before {
             content: "A. ";
-            color: #4a4a6a;
+            color: var(--accent-blue);
             font-weight: 700;
+            font-family: 'Courier New', monospace;
+        }
+
+        .faq-answer strong {
+            color: var(--accent-orange);
         }
 
         .faq-category {
-            color: #1a1a2e;
-            font-size: 1.3rem;
+            color: var(--text-primary);
+            font-size: 1.2rem;
             margin: 40px 0 20px;
             padding-bottom: 10px;
-            border-bottom: 2px solid #4a4a6a;
+            border-bottom: 1px solid var(--border-color);
+            font-family: 'Courier New', monospace;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .faq-category::before {
+            content: "#";
+            color: var(--accent-mint);
         }
 
         .faq-category:first-of-type {
@@ -125,24 +163,20 @@
 
         /* Footer */
         footer {
-            background: #1a1a2e;
-            color: #a0a0c0;
+            background: var(--bg-secondary);
+            border-top: 1px solid var(--border-color);
+            color: var(--text-secondary);
             text-align: center;
             padding: 30px 20px;
         }
 
-        /* Archive Notice */
-        .archive-notice {
-            background: #fff3cd;
-            border: 1px solid #ffc107;
-            color: #856404;
-            padding: 15px 20px;
-            text-align: center;
-            font-size: 0.9rem;
+        footer p {
+            margin-bottom: 8px;
         }
 
-        .archive-notice a {
-            color: #856404;
+        footer .hashtag {
+            color: var(--accent-mint);
+            font-family: 'Courier New', monospace;
         }
 
         /* Responsive */
@@ -163,10 +197,6 @@
     </style>
 </head>
 <body>
-    <div class="archive-notice">
-        이 페이지는 Langcon 2024 행사의 아카이브입니다. 원본: <a href="https://2024langcon.oopy.io/langcon2024" target="_blank">2024langcon.oopy.io</a>
-    </div>
-
     <nav>
         <ul>
             <li><a href="index.html">Langcon2024</a></li>
@@ -225,7 +255,7 @@
 
     <footer>
         <p>Langcon 2024 - 생성 모델 튜닝 어디까지 왔나?</p>
-        <p>#2024LangCon</p>
+        <p class="hashtag">#2024LangCon</p>
     </footer>
 </body>
 </html>

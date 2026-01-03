@@ -11,11 +11,24 @@
             box-sizing: border-box;
         }
 
+        :root {
+            --bg-primary: #0d1117;
+            --bg-secondary: #161b22;
+            --bg-tertiary: #21262d;
+            --text-primary: #e6edf3;
+            --text-secondary: #8b949e;
+            --border-color: #30363d;
+            --accent-mint: #3fb950;
+            --accent-blue: #58a6ff;
+            --accent-orange: #f78166;
+            --accent-purple: #a371f7;
+        }
+
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans KR', sans-serif;
             line-height: 1.6;
-            color: #333;
-            background-color: #fff;
+            color: var(--text-primary);
+            background-color: var(--bg-primary);
         }
 
         .container {
@@ -26,11 +39,12 @@
 
         /* Navigation */
         nav {
-            background: #1a1a2e;
+            background: var(--bg-secondary);
             padding: 15px 0;
             position: sticky;
             top: 0;
             z-index: 100;
+            border-bottom: 1px solid var(--border-color);
         }
 
         nav ul {
@@ -42,70 +56,90 @@
         }
 
         nav a {
-            color: #fff;
+            color: var(--text-secondary);
             text-decoration: none;
             font-weight: 500;
             padding: 8px 16px;
-            border-radius: 5px;
-            transition: background 0.3s;
+            border-radius: 6px;
+            transition: all 0.2s;
         }
 
-        nav a:hover, nav a.active {
-            background: #4a4a6a;
+        nav a:hover {
+            color: var(--text-primary);
+            background: var(--bg-tertiary);
+        }
+
+        nav a.active {
+            color: var(--accent-mint);
+            background: rgba(63, 185, 80, 0.1);
         }
 
         /* Header */
         header {
             text-align: center;
             padding: 60px 20px;
-            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
-            color: #fff;
+            background: var(--bg-secondary);
+            border-bottom: 1px solid var(--border-color);
         }
 
         header h1 {
             font-size: 2.5rem;
             margin-bottom: 10px;
+            background: linear-gradient(135deg, var(--accent-mint), var(--accent-blue));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
 
         header .subtitle {
             font-size: 1.3rem;
-            color: #a0a0c0;
-            margin-bottom: 30px;
+            color: var(--text-secondary);
         }
 
         /* Poster */
         .poster-section {
             text-align: center;
             padding: 40px 20px;
-            background: #f8f9fa;
+            background: var(--bg-primary);
         }
 
         .poster-section img {
             max-width: 100%;
             max-height: 600px;
-            border-radius: 10px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+            box-shadow: 0 10px 40px rgba(0,0,0,0.5);
         }
 
         /* Event Info */
         .event-info {
             padding: 50px 20px;
-            background: #fff;
+            background: var(--bg-primary);
         }
 
         .info-card {
-            background: #f8f9fa;
-            border-radius: 15px;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
             padding: 30px;
             margin-bottom: 30px;
         }
 
         .info-card h2 {
-            color: #1a1a2e;
+            color: var(--text-primary);
             margin-bottom: 20px;
             font-size: 1.5rem;
-            border-bottom: 2px solid #4a4a6a;
+            border-bottom: 1px solid var(--border-color);
             padding-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .info-card h2::before {
+            content: ">";
+            color: var(--accent-mint);
+            font-family: 'Courier New', monospace;
         }
 
         .info-item {
@@ -117,16 +151,22 @@
         .info-label {
             font-weight: 600;
             min-width: 80px;
-            color: #4a4a6a;
+            color: var(--accent-blue);
         }
 
         .info-value {
             flex: 1;
+            color: var(--text-primary);
+        }
+
+        .info-value small {
+            color: var(--text-secondary);
         }
 
         .info-value a {
-            color: #0066cc;
+            color: var(--accent-orange);
             text-decoration: none;
+            transition: all 0.2s;
         }
 
         .info-value a:hover {
@@ -136,71 +176,71 @@
         /* Sponsors */
         .sponsors {
             padding: 50px 20px;
-            background: #f8f9fa;
+            background: var(--bg-secondary);
             text-align: center;
+            border-top: 1px solid var(--border-color);
         }
 
         .sponsors h2 {
-            color: #1a1a2e;
+            color: var(--text-primary);
             margin-bottom: 40px;
-            font-size: 1.8rem;
+            font-size: 1.5rem;
         }
 
         .sponsor-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-            gap: 30px;
+            gap: 20px;
             max-width: 800px;
             margin: 0 auto;
             align-items: center;
         }
 
         .sponsor-item {
-            background: #fff;
+            background: var(--bg-tertiary);
             padding: 25px;
             border-radius: 10px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            border: 1px solid var(--border-color);
             display: flex;
             align-items: center;
             justify-content: center;
             min-height: 100px;
+            transition: all 0.3s;
+        }
+
+        .sponsor-item:hover {
+            border-color: var(--accent-blue);
+            box-shadow: 0 0 15px rgba(88, 166, 255, 0.1);
         }
 
         .sponsor-item img {
-            max-width: 150px;
-            max-height: 60px;
+            max-width: 140px;
+            max-height: 50px;
             object-fit: contain;
+            filter: brightness(0) invert(1);
+            opacity: 0.9;
         }
 
-        .sponsor-name {
-            font-weight: 600;
-            color: #333;
+        .sponsor-item:hover img {
+            opacity: 1;
         }
 
         /* Footer */
         footer {
-            background: #1a1a2e;
-            color: #a0a0c0;
+            background: var(--bg-secondary);
+            border-top: 1px solid var(--border-color);
+            color: var(--text-secondary);
             text-align: center;
             padding: 30px 20px;
         }
 
         footer p {
-            margin-bottom: 10px;
+            margin-bottom: 8px;
         }
 
-        footer a {
-            color: #fff;
-        }
-
-        /* Archive Notice */
-        .archive-notice {
-            background: #fff3cd;
-            border: 1px solid #ffc107;
-            color: #856404;
-            padding: 15px 20px;
-            text-align: center;
-            font-size: 0.9rem;
+        footer .hashtag {
+            color: var(--accent-mint);
+            font-family: 'Courier New', monospace;
         }
 
         /* Responsive */
@@ -221,10 +261,6 @@
     </style>
 </head>
 <body>
-    <div class="archive-notice">
-        이 페이지는 Langcon 2024 행사의 아카이브입니다. 원본: <a href="https://2024langcon.oopy.io/langcon2024" target="_blank">2024langcon.oopy.io</a>
-    </div>
-
     <nav>
         <ul>
             <li><a href="index.html" class="active">Langcon2024</a></li>
@@ -241,7 +277,7 @@
 
     <section class="poster-section">
         <div class="container">
-            <img src="images/poster.png" alt="Langcon 2024 포스터" onerror="this.style.display='none'">
+            <img src="images/poster.png" alt="Langcon 2024 포스터">
         </div>
     </section>
 
@@ -274,24 +310,23 @@
         <h2>후원사</h2>
         <div class="sponsor-grid">
             <div class="sponsor-item">
-                <span class="sponsor-name">Microsoft</span>
+                <img src="images/sponsors/microsoft.png" alt="Microsoft">
             </div>
             <div class="sponsor-item">
-                <span class="sponsor-name">Sionic AI</span>
+                <img src="images/sponsors/sionic.png" alt="Sionic AI">
             </div>
             <div class="sponsor-item">
-                <span class="sponsor-name">M Robo</span>
+                <img src="images/sponsors/mrobo.png" alt="M Robo">
             </div>
             <div class="sponsor-item">
-                <span class="sponsor-name">Inflearn</span>
+                <img src="images/sponsors/inflearn.png" alt="Inflearn">
             </div>
         </div>
     </section>
 
     <footer>
         <p>Langcon 2024 - 생성 모델 튜닝 어디까지 왔나?</p>
-        <p>#2024LangCon</p>
-        <p><small>Archived with GitHub Pages</small></p>
+        <p class="hashtag">#2024LangCon</p>
     </footer>
 </body>
 </html>
