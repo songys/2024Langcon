@@ -116,83 +116,196 @@
             color: var(--accent-mint);
         }
 
-        .schedule-table {
-            width: 100%;
-            border-collapse: collapse;
+        /* Accordion Styles */
+        .session-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
             margin-bottom: 40px;
+        }
+
+        .session-item {
             background: var(--bg-secondary);
             border: 1px solid var(--border-color);
             border-radius: 10px;
             overflow: hidden;
+            transition: all 0.3s;
         }
 
-        .schedule-table th {
-            background: var(--bg-tertiary);
-            color: var(--text-primary);
-            padding: 15px;
-            text-align: left;
-            font-weight: 600;
-            border-bottom: 1px solid var(--border-color);
+        .session-item:hover {
+            border-color: var(--accent-blue);
         }
 
-        .schedule-table td {
-            padding: 15px;
-            border-bottom: 1px solid var(--border-color);
+        .session-header {
+            display: flex;
+            align-items: center;
+            padding: 16px 20px;
+            cursor: pointer;
+            gap: 16px;
+            transition: background 0.2s;
         }
 
-        .schedule-table tr:last-child td {
-            border-bottom: none;
-        }
-
-        .schedule-table tr:hover {
+        .session-header:hover {
             background: var(--bg-tertiary);
         }
 
-        .time {
+        .session-time {
             font-weight: 600;
             color: var(--accent-blue);
-            white-space: nowrap;
+            font-family: 'Courier New', monospace;
+            min-width: 60px;
+        }
+
+        .session-info {
+            flex: 1;
+        }
+
+        .session-speaker {
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .session-affiliation {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+        }
+
+        .session-topic {
+            color: var(--text-primary);
+            margin-top: 4px;
+        }
+
+        .session-toggle {
+            color: var(--text-secondary);
+            font-size: 1.2rem;
+            transition: transform 0.3s;
+        }
+
+        .session-item.open .session-toggle {
+            transform: rotate(180deg);
+        }
+
+        .session-details {
+            display: none;
+            padding: 0 20px 20px;
+            border-top: 1px solid var(--border-color);
+            background: var(--bg-tertiary);
+        }
+
+        .session-item.open .session-details {
+            display: block;
+        }
+
+        .speaker-profile {
+            display: flex;
+            gap: 20px;
+            padding-top: 20px;
+            align-items: flex-start;
+        }
+
+        .speaker-avatar {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid var(--border-color);
+            flex-shrink: 0;
+        }
+
+        .speaker-bio {
+            flex: 1;
+        }
+
+        .speaker-bio h4 {
+            color: var(--accent-mint);
+            margin-bottom: 8px;
             font-family: 'Courier New', monospace;
         }
 
-        .speaker {
-            font-weight: 600;
-            color: var(--text-primary);
+        .speaker-bio p {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            line-height: 1.6;
         }
 
-        .affiliation {
+        .session-description {
+            margin-top: 16px;
+            padding-top: 16px;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .session-description h4 {
+            color: var(--accent-blue);
+            margin-bottom: 8px;
+            font-family: 'Courier New', monospace;
+        }
+
+        .session-description p {
             color: var(--text-secondary);
             font-size: 0.9rem;
         }
 
-        .topic {
-            color: var(--text-primary);
+        .session-links {
+            margin-top: 16px;
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
         }
 
-        .break-row {
-            background: var(--bg-tertiary) !important;
-            text-align: center;
+        .session-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 8px 14px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 500;
+            transition: all 0.2s;
         }
 
-        .break-row td {
-            color: var(--text-secondary);
-            font-style: italic;
+        .session-link.youtube {
+            background: rgba(247, 129, 102, 0.15);
+            color: var(--accent-orange);
+            border: 1px solid var(--accent-orange);
+        }
+
+        .session-link.youtube:hover {
+            background: var(--accent-orange);
+            color: var(--bg-primary);
+        }
+
+        .session-link.slide {
+            background: rgba(88, 166, 255, 0.15);
+            color: var(--accent-blue);
+            border: 1px solid var(--accent-blue);
+        }
+
+        .session-link.slide:hover {
+            background: var(--accent-blue);
+            color: var(--bg-primary);
         }
 
         .private-note {
             font-size: 0.8rem;
             color: var(--accent-orange);
+            font-style: italic;
         }
 
-        .slide-link {
-            margin-left: 8px;
-            text-decoration: none;
-            opacity: 0.8;
-            transition: opacity 0.2s;
+        /* Break Row */
+        .break-item {
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            padding: 16px 20px;
+            text-align: center;
+            color: var(--text-secondary);
+            font-style: italic;
         }
 
-        .slide-link:hover {
-            opacity: 1;
+        .break-item .session-time {
+            display: inline;
+            margin-right: 16px;
         }
 
         /* Staff Section */
@@ -268,14 +381,6 @@
 
         /* Responsive */
         @media (max-width: 600px) {
-            .schedule-table {
-                font-size: 0.85rem;
-            }
-
-            .schedule-table th, .schedule-table td {
-                padding: 10px 8px;
-            }
-
             nav ul {
                 gap: 10px;
             }
@@ -283,6 +388,21 @@
             nav a {
                 padding: 6px 12px;
                 font-size: 0.9rem;
+            }
+
+            .session-header {
+                flex-wrap: wrap;
+            }
+
+            .speaker-profile {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+            }
+
+            .speaker-avatar {
+                width: 80px;
+                height: 80px;
             }
         }
     </style>
@@ -299,156 +419,500 @@
 
     <header>
         <h1>발표 및 스탭 안내</h1>
-        <p class="subtitle">발표 시간을 클릭하시면 발표자 소개 및 발표 자료를 볼 수 있습니다.</p>
+        <p class="subtitle">발표자 이름을 클릭하면 상세 정보를 볼 수 있습니다.</p>
     </header>
 
     <section class="schedule-section">
         <div class="container">
             <h2>기조 연설 (Keynote)</h2>
-            <table class="schedule-table">
-                <thead>
-                    <tr>
-                        <th>시간</th>
-                        <th>발표자</th>
-                        <th>소속</th>
-                        <th>주제</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td class="time">10:00</td>
-                        <td class="speaker">고석현</td>
-                        <td class="affiliation">Sionic AI</td>
-                        <td class="topic">생성 모델 튜닝 어디까지 왔나?</td>
-                    </tr>
-                    <tr>
-                        <td class="time">10:40</td>
-                        <td class="speaker">신정규</td>
-                        <td class="affiliation">Lablup</td>
-                        <td class="topic">한국어 오픈소스 거대 언어 모델의 가능성</td>
-                    </tr>
-                    <tr>
-                        <td class="time">11:20</td>
-                        <td class="speaker">박우명</td>
-                        <td class="affiliation">Sionic AI</td>
-                        <td class="topic">LLM의 능력과 활용: 혁신적 문제 해결</td>
-                    </tr>
-                </tbody>
-            </table>
+            <div class="session-list">
+                <!-- 10:00 고석현 -->
+                <div class="session-item">
+                    <div class="session-header" onclick="toggleSession(this)">
+                        <span class="session-time">10:00</span>
+                        <div class="session-info">
+                            <div class="session-speaker">고석현 <span class="session-affiliation">Sionic AI</span></div>
+                            <div class="session-topic">생성 모델 튜닝 어디까지 왔나?</div>
+                        </div>
+                        <span class="session-toggle">▼</span>
+                    </div>
+                    <div class="session-details">
+                        <div class="speaker-profile">
+                            <img src="images/speakers/goseokhyun.jpg" alt="고석현" class="speaker-avatar">
+                            <div class="speaker-bio">
+                                <h4>발표자 소개</h4>
+                                <p>Sionic AI Inc Chief Executive Officer</p>
+                            </div>
+                        </div>
+                        <div class="session-description">
+                            <h4>발표 내용</h4>
+                            <p>생성 모델의 튜닝이 중요한 이유와 튜닝 사례들을 중심으로 현재 필요한 생성 모델의 튜닝 방법론들을 다룹니다.</p>
+                        </div>
+                        <div class="session-links">
+                            <a href="https://www.youtube.com/watch?v=jnUeWCe4xTo" target="_blank" class="session-link youtube">YouTube</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 10:40 신정규 -->
+                <div class="session-item">
+                    <div class="session-header" onclick="toggleSession(this)">
+                        <span class="session-time">10:40</span>
+                        <div class="session-info">
+                            <div class="session-speaker">신정규 <span class="session-affiliation">Lablup</span></div>
+                            <div class="session-topic">한국어 오픈소스 거대 언어 모델의 가능성</div>
+                        </div>
+                        <span class="session-toggle">▼</span>
+                    </div>
+                    <div class="session-details">
+                        <div class="speaker-profile">
+                            <img src="images/speakers/shinjeongkyu.jpg" alt="신정규" class="speaker-avatar">
+                            <div class="speaker-bio">
+                                <h4>발표자 소개</h4>
+                                <p>Lablup Inc. Chief Executive Officer<br>래블업에서 모델 깎고 시스템 설계합니다. 부업으로 대표도 합니다. 텍스트큐브라는 블로그 소프트웨어를 만든 적이 있습니다.</p>
+                            </div>
+                        </div>
+                        <div class="session-description">
+                            <h4>발표 내용</h4>
+                            <p>한국어 오픈소스 파운데이션 모델의 가능성에 대해 탐구합니다. 딥 러닝과 NLP의 발전으로 언어 모델 성능이 향상되었지만, 한국어와 같은 언어는 상대적으로 덜 주목받았습니다. 본 발표에서는 한국어에 특화된 오픈소스 거대 언어 모델의 중요성과 가능성을 강조하고, 한국어 NLP 연구가 실질적인 파운데이션 모델로 이어지기 위해 필요한 다양한 요소들에 대해 함께 생각해 봅니다.</p>
+                        </div>
+                        <div class="session-links">
+                            <a href="https://speakerdeck.com/inureyes/potential-of-korean-open-source-llm-language-understanding-and-generation-new-era" target="_blank" class="session-link slide">발표 자료</a>
+                            <a href="https://www.youtube.com/watch?v=TX6s1oz279c" target="_blank" class="session-link youtube">YouTube</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 11:20 박우명 -->
+                <div class="session-item">
+                    <div class="session-header" onclick="toggleSession(this)">
+                        <span class="session-time">11:20</span>
+                        <div class="session-info">
+                            <div class="session-speaker">박우명 <span class="session-affiliation">Sionic AI</span></div>
+                            <div class="session-topic">LLM의 능력과 활용: 혁신적 문제 해결</div>
+                        </div>
+                        <span class="session-toggle">▼</span>
+                    </div>
+                    <div class="session-details">
+                        <div class="speaker-profile">
+                            <img src="images/speakers/parkwoomyung.jpg" alt="박우명" class="speaker-avatar">
+                            <div class="speaker-bio">
+                                <h4>발표자 소개</h4>
+                                <p>Sionic AI Inc, CDO / Head of Research</p>
+                            </div>
+                        </div>
+                        <div class="session-description">
+                            <h4>발표 내용</h4>
+                            <p>LLM으로 할 수 있는 일들에 대하여 살펴보고 이것을 효과적으로 활용하기 위한 방법을 소개합니다.</p>
+                        </div>
+                        <div class="session-links">
+                            <a href="https://www.youtube.com/watch?v=fzCktd1n2ZQ" target="_blank" class="session-link youtube">YouTube</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
             <h2>일반 발표</h2>
-            <table class="schedule-table">
-                <thead>
-                    <tr>
-                        <th>시간</th>
-                        <th>발표자</th>
-                        <th>소속</th>
-                        <th>주제</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td class="time">12:00</td>
-                        <td class="speaker">조원익</td>
-                        <td class="affiliation">서울대학교</td>
-                        <td class="topic">데이터 깎는 소상공인으로 살아남기 <a href="https://drive.google.com/file/d/14HvR33QknAqckLDm3jDbcUKtlFnP0Vvb/view" target="_blank" class="slide-link">📄</a></td>
-                    </tr>
-                    <tr class="break-row">
-                        <td class="time">12:25</td>
-                        <td colspan="3">점심시간</td>
-                    </tr>
-                    <tr>
-                        <td class="time">13:00</td>
-                        <td class="speaker">송치성</td>
-                        <td class="affiliation">BHSN</td>
-                        <td class="topic">Beyond Linear Context</td>
-                    </tr>
-                    <tr>
-                        <td class="time">13:25</td>
-                        <td class="speaker">이준범</td>
-                        <td class="affiliation">DataDriven AI</td>
-                        <td class="topic">영어 모델을 한국어로 변환하는 방법</td>
-                    </tr>
-                    <tr>
-                        <td class="time">13:50</td>
-                        <td class="speaker">김성현</td>
-                        <td class="affiliation">토스 증권</td>
-                        <td class="topic">금융 도메인에서 LLM 활용</td>
-                    </tr>
-                    <tr>
-                        <td class="time">14:15</td>
-                        <td class="speaker">이성진</td>
-                        <td class="affiliation">BHSN</td>
-                        <td class="topic">Open Model을 Long Context로 튜닝</td>
-                    </tr>
-                    <tr class="break-row">
-                        <td class="time">14:40</td>
-                        <td colspan="3">쉬는 시간</td>
-                    </tr>
-                    <tr>
-                        <td class="time">15:00</td>
-                        <td class="speaker">김주현, 박진형</td>
-                        <td class="affiliation">Sionic AI + MetisX</td>
-                        <td class="topic">FPGA를 이용한 벡터 연산 가속화</td>
-                    </tr>
-                    <tr>
-                        <td class="time">15:25</td>
-                        <td class="speaker">김현</td>
-                        <td class="affiliation">LG AI Research</td>
-                        <td class="topic">LLM을 활용한 검색 구축</td>
-                    </tr>
-                    <tr>
-                        <td class="time">15:50</td>
-                        <td class="speaker">김기현</td>
-                        <td class="affiliation">LG유플러스</td>
-                        <td class="topic">기계번역기 구축 방법 <span class="private-note">(비공개)</span></td>
-                    </tr>
-                    <tr>
-                        <td class="time">16:15</td>
-                        <td class="speaker">오성우</td>
-                        <td class="affiliation">KB국민은행</td>
-                        <td class="topic">AI와 저작권 문제</td>
-                    </tr>
-                    <tr>
-                        <td class="time">16:40</td>
-                        <td class="speaker">허훈</td>
-                        <td class="affiliation">라이너</td>
-                        <td class="topic">사용자와 함께 진화하는 Agent 운영기</td>
-                    </tr>
-                </tbody>
-            </table>
+            <div class="session-list">
+                <!-- 12:00 조원익 -->
+                <div class="session-item">
+                    <div class="session-header" onclick="toggleSession(this)">
+                        <span class="session-time">12:00</span>
+                        <div class="session-info">
+                            <div class="session-speaker">조원익 <span class="session-affiliation">서울대학교</span></div>
+                            <div class="session-topic">데이터 깎는 소상공인으로 살아남기</div>
+                        </div>
+                        <span class="session-toggle">▼</span>
+                    </div>
+                    <div class="session-details">
+                        <div class="speaker-profile">
+                            <img src="images/speakers/jowonick.png" alt="조원익" class="speaker-avatar">
+                            <div class="speaker-bio">
+                                <h4>발표자 소개</h4>
+                                <p>B.S. in EE/Mathematics (SNU, '10~'14)<br>
+                                Ph.D. in EE (SNU EE/INMC, '14~'22)<br>
+                                Staff Engineer (Samsung SAIT, '22~)<br>
+                                Interested in: Computational linguistics, Computational social science</p>
+                            </div>
+                        </div>
+                        <div class="session-description">
+                            <h4>발표 내용</h4>
+                            <p>'데이터 담당'으로 살아남는다는 것은 어떤 의미일까요? 한국어 자연어처리 데이터를 보는 시각 변화를 중심으로 이야기합니다.</p>
+                        </div>
+                        <div class="session-links">
+                            <a href="https://drive.google.com/file/d/14HvR33QknAqckLDm3jDbcUKtlFnP0Vvb/view" target="_blank" class="session-link slide">발표 자료</a>
+                            <a href="https://youtu.be/NARhmYlBH9M" target="_blank" class="session-link youtube">YouTube</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 12:25 점심시간 -->
+                <div class="break-item">
+                    <span class="session-time">12:25</span>
+                    점심시간
+                </div>
+
+                <!-- 13:00 송치성 -->
+                <div class="session-item">
+                    <div class="session-header" onclick="toggleSession(this)">
+                        <span class="session-time">13:00</span>
+                        <div class="session-info">
+                            <div class="session-speaker">송치성 <span class="session-affiliation">BHSN</span></div>
+                            <div class="session-topic">Beyond Linear Context</div>
+                        </div>
+                        <span class="session-toggle">▼</span>
+                    </div>
+                    <div class="session-details">
+                        <div class="speaker-profile">
+                            <img src="images/speakers/songchisung.png" alt="송치성" class="speaker-avatar">
+                            <div class="speaker-bio">
+                                <h4>발표자 소개</h4>
+                                <p>BHSN.AI AI 엔지니어<br>
+                                (전) 하나금융그룹 융합기술원<br>
+                                (전) 엔씨소프트 음성인식팀</p>
+                            </div>
+                        </div>
+                        <div class="session-description">
+                            <h4>발표 내용</h4>
+                            <p>명함, 신용장, 영수증 등 이미지로 된 구조화 문서에서 정보를 추출하는데, OCR을 통하여 문맥 정보뿐만 아니라 단어의 위치 정보까지 결합하여 활용하는 multi-modal 접근 방법에 대해 소개합니다.</p>
+                        </div>
+                        <div class="session-links">
+                            <a href="https://youtu.be/60aZ-aqEG5M" target="_blank" class="session-link youtube">YouTube</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 13:25 이준범 -->
+                <div class="session-item">
+                    <div class="session-header" onclick="toggleSession(this)">
+                        <span class="session-time">13:25</span>
+                        <div class="session-info">
+                            <div class="session-speaker">이준범 <span class="session-affiliation">DataDriven AI</span></div>
+                            <div class="session-topic">영어 모델을 한국어로 변환하는 방법</div>
+                        </div>
+                        <span class="session-toggle">▼</span>
+                    </div>
+                    <div class="session-details">
+                        <div class="speaker-profile">
+                            <img src="images/speakers/leejunbeom.jpg" alt="이준범" class="speaker-avatar">
+                            <div class="speaker-bio">
+                                <h4>발표자 소개</h4>
+                                <p>GitHub: <a href="https://github.com/Beomi" target="_blank" style="color: var(--accent-blue);">github.com/Beomi</a></p>
+                            </div>
+                        </div>
+                        <div class="session-description">
+                            <h4>발표 내용</h4>
+                            <p>영어 잘 하는 모델을 한국어 잘 하는 모델로 바꾸는 레시피 (부제: Llama-2-Ko, Yi-Ko, Solar-Ko와 함께하는 한국어 언어모델 만들기)</p>
+                        </div>
+                        <div class="session-links">
+                            <a href="https://www.youtube.com/watch?v=pxWji5kykw8" target="_blank" class="session-link youtube">YouTube</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 13:50 김성현 -->
+                <div class="session-item">
+                    <div class="session-header" onclick="toggleSession(this)">
+                        <span class="session-time">13:50</span>
+                        <div class="session-info">
+                            <div class="session-speaker">김성현 <span class="session-affiliation">토스 증권</span></div>
+                            <div class="session-topic">금융 도메인에서 LLM 활용</div>
+                        </div>
+                        <span class="session-toggle">▼</span>
+                    </div>
+                    <div class="session-details">
+                        <div class="speaker-profile">
+                            <img src="images/speakers/kimsunghyun.png" alt="김성현" class="speaker-avatar">
+                            <div class="speaker-bio">
+                                <h4>발표자 소개</h4>
+                                <p>토스 증권 Machine learning team, machine learning engineer<br>
+                                전) 신한AI 솔루션챕터<br>
+                                전) 솔트룩스 AI Labs</p>
+                            </div>
+                        </div>
+                        <div class="session-description">
+                            <h4>발표 내용</h4>
+                            <p>Agent를 활용하여 개인 투자자들을 위한 쉽고 정확한 주식 종목 정보 제공 어플리케이션 개발 방법론</p>
+                        </div>
+                        <div class="session-links">
+                            <a href="https://youtu.be/aA7j7GHFjEc" target="_blank" class="session-link youtube">YouTube</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 14:15 이성진 -->
+                <div class="session-item">
+                    <div class="session-header" onclick="toggleSession(this)">
+                        <span class="session-time">14:15</span>
+                        <div class="session-info">
+                            <div class="session-speaker">이성진 <span class="session-affiliation">BHSN</span></div>
+                            <div class="session-topic">Open Model을 Long Context로 튜닝</div>
+                        </div>
+                        <span class="session-toggle">▼</span>
+                    </div>
+                    <div class="session-details">
+                        <div class="speaker-profile">
+                            <img src="images/speakers/leesungjin.jpg" alt="이성진" class="speaker-avatar">
+                            <div class="speaker-bio">
+                                <h4>발표자 소개</h4>
+                                <p>BHSN에서 AI 엔지니어로 일하며 BERT, LLM 등을 다루고 있습니다. 언어 모델을 활용해 현실에 존재하는 다양한 문제들을 해결하여 더 편한 세상을 만들어나가는데 힘을 보태고 싶습니다.</p>
+                            </div>
+                        </div>
+                        <div class="session-description">
+                            <h4>발표 내용</h4>
+                            <p>Self-Attention Mechanism, Positional Encodings, Lost in the Middle, Task/Data for Long Context SFT, Efficient Training Methods for Long Context, Long Context w/ Legal Domain</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 14:40 쉬는 시간 -->
+                <div class="break-item">
+                    <span class="session-time">14:40</span>
+                    쉬는 시간
+                </div>
+
+                <!-- 15:00 김주현, 박진형 -->
+                <div class="session-item">
+                    <div class="session-header" onclick="toggleSession(this)">
+                        <span class="session-time">15:00</span>
+                        <div class="session-info">
+                            <div class="session-speaker">김주현, 박진형 <span class="session-affiliation">Sionic AI + MetisX</span></div>
+                            <div class="session-topic">FPGA를 이용한 벡터 연산 가속화</div>
+                        </div>
+                        <span class="session-toggle">▼</span>
+                    </div>
+                    <div class="session-details">
+                        <div class="speaker-profile">
+                            <img src="images/speakers/kimjuhyun.png" alt="김주현" class="speaker-avatar">
+                            <div class="speaker-bio">
+                                <h4>김주현</h4>
+                                <p>MetisX CPO, Co-founder<br>
+                                프로세서아키텍처, CXL메모리시스템 전문가, 하드웨어를 함께 설계(co-design)하는 소프트웨어 엔지니어<br>
+                                (前) SK하이닉스, SK텔레콤, 삼성전자</p>
+                            </div>
+                        </div>
+                        <div class="speaker-profile" style="padding-top: 12px;">
+                            <img src="images/speakers/parkjinhyung.jpg" alt="박진형" class="speaker-avatar">
+                            <div class="speaker-bio">
+                                <h4>박진형 (Sigrid Jin)</h4>
+                                <p>Sionic AI Inc Software Engineer<br>
+                                (전) 네이버 커넥트재단 부스트캠프<br>
+                                (전) DSRV Software Engineer</p>
+                            </div>
+                        </div>
+                        <div class="session-description">
+                            <h4>발표 내용</h4>
+                            <p>LLM을 비즈니스 환경에 적용하기 위하여 RAG와 같은 고급 문서처리 기법들이 주목받고 있습니다. FPGA 가속을 통하여 벡터 연산을 최적화할 수 있는 방법에 대해 Sionic AI와 MetisX의 공동 과제 협업 사례를 공유합니다.</p>
+                        </div>
+                        <div class="session-links">
+                            <a href="https://www.youtube.com/watch?v=0o9T7C_Q8zQ" target="_blank" class="session-link youtube">YouTube</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 15:25 김현 -->
+                <div class="session-item">
+                    <div class="session-header" onclick="toggleSession(this)">
+                        <span class="session-time">15:25</span>
+                        <div class="session-info">
+                            <div class="session-speaker">김현 <span class="session-affiliation">LG AI Research</span></div>
+                            <div class="session-topic">LLM을 활용한 검색 구축</div>
+                        </div>
+                        <span class="session-toggle">▼</span>
+                    </div>
+                    <div class="session-details">
+                        <div class="speaker-profile">
+                            <img src="images/speakers/kimhyun.png" alt="김현" class="speaker-avatar">
+                            <div class="speaker-bio">
+                                <h4>발표자 소개</h4>
+                                <p>LG AI Research에서 검색과 QA에 대해 연구하는 김현입니다. AI native, LLM 기반 앱 개발에 관심이 있습니다.</p>
+                            </div>
+                        </div>
+                        <div class="session-description">
+                            <h4>발표 내용</h4>
+                            <p>LLM을 활용해서 구성하는 앱으로 필수적인 기능들을 모아 만드는 내 시스템. 개인의 관심사로 꾸며보는 나만의 검색시스템 만들기</p>
+                        </div>
+                        <div class="session-links">
+                            <a href="https://youtu.be/pI53EXaKph8" target="_blank" class="session-link youtube">YouTube</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 15:50 김기현 -->
+                <div class="session-item">
+                    <div class="session-header" onclick="toggleSession(this)">
+                        <span class="session-time">15:50</span>
+                        <div class="session-info">
+                            <div class="session-speaker">김기현 <span class="session-affiliation">LG유플러스</span></div>
+                            <div class="session-topic">기계번역기 구축 방법 <span class="private-note">(비공개)</span></div>
+                        </div>
+                        <span class="session-toggle">▼</span>
+                    </div>
+                    <div class="session-details">
+                        <div class="speaker-profile">
+                            <img src="images/speakers/kimgihyun.png" alt="김기현" class="speaker-avatar">
+                            <div class="speaker-bio">
+                                <h4>발표자 소개</h4>
+                                <p>전) SKTelecom LLM 연구/개발<br>
+                                전) SK플래닛 NMT 연구/개발<br>
+                                전) 한국전자통신연구원 자동통역연구실 연구/개발</p>
+                            </div>
+                        </div>
+                        <div class="session-description">
+                            <h4>발표 내용</h4>
+                            <p>이제 누구나 손쉽게 상용 수준 번역기를 만들 수 있는 세상이 왔습니다. 데이터를 수집하고 허깅페이스를 활용하여 상용 수준 성능의 기계번역 모델을 개발하고 커뮤니티에 기여한 내용을 공유합니다.</p>
+                            <p class="private-note" style="margin-top: 8px;">발표 자료는 발표자의 요청에 따라 비공개됩니다.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 16:15 오성우 -->
+                <div class="session-item">
+                    <div class="session-header" onclick="toggleSession(this)">
+                        <span class="session-time">16:15</span>
+                        <div class="session-info">
+                            <div class="session-speaker">오성우 <span class="session-affiliation">KB국민은행</span></div>
+                            <div class="session-topic">AI와 저작권 문제</div>
+                        </div>
+                        <span class="session-toggle">▼</span>
+                    </div>
+                    <div class="session-details">
+                        <div class="speaker-profile">
+                            <img src="images/speakers/ohsungwoo.png" alt="오성우" class="speaker-avatar">
+                            <div class="speaker-bio">
+                                <h4>발표자 소개</h4>
+                                <p>KB국민은행 AI 엔지니어<br>
+                                LinkedIn: <a href="https://www.linkedin.com/in/sackoh/" target="_blank" style="color: var(--accent-blue);">sackoh</a><br>
+                                GitHub: <a href="https://www.github.com/sackoh" target="_blank" style="color: var(--accent-blue);">sackoh</a></p>
+                            </div>
+                        </div>
+                        <div class="session-description">
+                            <h4>발표 내용</h4>
+                            <p>LLM 시대의 오픈소스 정책과 라이선스 이슈를 다룹니다. 웹 크롤링 데이터의 LLM 학습 사용과 저작권, LLM 생성물 사용시 발생하는 저작권 문제, AI 생성물 저작권 보호를 위한 워터마크 기술의 현재와 미래를 논의합니다.</p>
+                        </div>
+                        <div class="session-links">
+                            <a href="https://www.youtube.com/watch?v=uzx3EukBZ_M" target="_blank" class="session-link youtube">YouTube</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 16:40 허훈 -->
+                <div class="session-item">
+                    <div class="session-header" onclick="toggleSession(this)">
+                        <span class="session-time">16:40</span>
+                        <div class="session-info">
+                            <div class="session-speaker">허훈 <span class="session-affiliation">라이너</span></div>
+                            <div class="session-topic">사용자와 함께 진화하는 Agent 운영기</div>
+                        </div>
+                        <span class="session-toggle">▼</span>
+                    </div>
+                    <div class="session-details">
+                        <div class="speaker-profile">
+                            <img src="images/speakers/heohoon.jpg" alt="허훈" class="speaker-avatar">
+                            <div class="speaker-bio">
+                                <h4>발표자 소개</h4>
+                                <p>(현) Liner 테크니컬 리드<br>
+                                (전) 카카오브레인 머신러닝 엔지니어</p>
+                            </div>
+                        </div>
+                        <div class="session-description">
+                            <h4>발표 내용</h4>
+                            <p>Agent 기반 프로덕트를 1년 여간 운영하며 얻은 배움과 노하우, Data Flywheel 구축을 향한 여정을 다룹니다.</p>
+                        </div>
+                        <div class="session-links">
+                            <a href="https://www.youtube.com/watch?v=NrVPF4p9rM0" target="_blank" class="session-link youtube">YouTube</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
             <h2>특별 세션 (Special Session)</h2>
-            <table class="schedule-table">
-                <thead>
-                    <tr>
-                        <th>시간</th>
-                        <th>발표자</th>
-                        <th>소속</th>
-                        <th>주제</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td class="time">17:15</td>
-                        <td class="speaker">정다운</td>
-                        <td class="affiliation">스캐터랩</td>
-                        <td class="topic">한국에서 일본어 NLP 출시하기</td>
-                    </tr>
-                    <tr>
-                        <td class="time">17:40</td>
-                        <td class="speaker">허석원</td>
-                        <td class="affiliation">Sionic AI</td>
-                        <td class="topic">일본 AI 프로젝트 사례 <span class="private-note">(영상 비공개)</span></td>
-                    </tr>
-                    <tr>
-                        <td class="time">18:05</td>
-                        <td class="speaker">이지혜</td>
-                        <td class="affiliation">Coca-Cola Japan</td>
-                        <td class="topic">일본에서의 데이터업 <span class="private-note">(자료/영상 비공개)</span></td>
-                    </tr>
-                </tbody>
-            </table>
+            <div class="session-list">
+                <!-- 17:15 정다운 -->
+                <div class="session-item">
+                    <div class="session-header" onclick="toggleSession(this)">
+                        <span class="session-time">17:15</span>
+                        <div class="session-info">
+                            <div class="session-speaker">정다운 <span class="session-affiliation">스캐터랩</span></div>
+                            <div class="session-topic">한국에서 일본어 NLP 출시하기</div>
+                        </div>
+                        <span class="session-toggle">▼</span>
+                    </div>
+                    <div class="session-details">
+                        <div class="speaker-profile">
+                            <img src="images/speakers/jeongdaun.png" alt="정다운" class="speaker-avatar">
+                            <div class="speaker-bio">
+                                <h4>발표자 소개</h4>
+                                <p>스캐터랩 ML 리서처</p>
+                            </div>
+                        </div>
+                        <div class="session-description">
+                            <h4>발표 내용</h4>
+                            <p>일본어 및 일본어 데이터에 대한 특징을 설명드리고, 일본어 NLP 서비스에 사용할 일본어 생성 모델을 구축하는 과정에서 겪은 시행착오나 노하우를 공유드립니다.</p>
+                        </div>
+                        <div class="session-links">
+                            <a href="https://www.youtube.com/watch?v=uD_FdS8oqIg" target="_blank" class="session-link youtube">YouTube</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 17:40 허석원 -->
+                <div class="session-item">
+                    <div class="session-header" onclick="toggleSession(this)">
+                        <span class="session-time">17:40</span>
+                        <div class="session-info">
+                            <div class="session-speaker">허석원 <span class="session-affiliation">Sionic AI</span></div>
+                            <div class="session-topic">일본 AI 프로젝트 사례 <span class="private-note">(영상 비공개)</span></div>
+                        </div>
+                        <span class="session-toggle">▼</span>
+                    </div>
+                    <div class="session-details">
+                        <div class="speaker-profile">
+                            <img src="images/speakers/heoseokwon.jpg" alt="허석원" class="speaker-avatar">
+                            <div class="speaker-bio">
+                                <h4>발표자 소개</h4>
+                                <p>Sionic AI Inc Business Development Manager<br>
+                                (前) LINE Corp Product Manager<br>
+                                (前) LINE CLOVA Project Manager<br>
+                                慶應義塾大学 Business and Commerce 専攻</p>
+                            </div>
+                        </div>
+                        <div class="session-description">
+                            <h4>발표 내용</h4>
+                            <p>일본 AI 프로젝트의 실제적 사례 소개 (과거와 현재)</p>
+                            <p class="private-note" style="margin-top: 8px;">발표 영상은 발표자의 요청에 따라 비공개됩니다.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 18:05 이지혜 -->
+                <div class="session-item">
+                    <div class="session-header" onclick="toggleSession(this)">
+                        <span class="session-time">18:05</span>
+                        <div class="session-info">
+                            <div class="session-speaker">이지혜 <span class="session-affiliation">Coca-Cola Japan</span></div>
+                            <div class="session-topic">일본에서의 데이터업 <span class="private-note">(자료/영상 비공개)</span></div>
+                        </div>
+                        <span class="session-toggle">▼</span>
+                    </div>
+                    <div class="session-details">
+                        <div class="speaker-profile">
+                            <img src="images/speakers/leejihye.png" alt="이지혜" class="speaker-avatar">
+                            <div class="speaker-bio">
+                                <h4>발표자 소개</h4>
+                                <p>이지혜 a.k.a Alice<br>
+                                Business Analyst & Data Visualization Engineer, Coca-Cola Japan<br>
+                                현재는 한국 및 일본의 데이터 업무를 담당하며, 글로벌팀과 함께 데이터 포르덕트를 함께 만들어가고 있습니다.</p>
+                            </div>
+                        </div>
+                        <div class="session-description">
+                            <h4>발표 내용</h4>
+                            <p>일본에서 데이터 분석가로 일하며 느낀 것들을 공유합니다. 데이터 관점에서 일본 시장이 흥미로운 이유(FCMG 분야 한정), 시장의 흥미로움이 업무로 연결되는 이유, 만약 일본에서 일하고 싶다면 생각해봐야 할 것들을 다룹니다.</p>
+                            <p class="private-note" style="margin-top: 8px;">발표 자료 및 영상은 발표자의 요청에 따라 비공개됩니다.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 
@@ -492,5 +956,12 @@
         <p>Langcon 2024 - 생성 모델 튜닝 어디까지 왔나?</p>
         <p class="hashtag">#2024LangCon</p>
     </footer>
+
+    <script>
+        function toggleSession(header) {
+            const sessionItem = header.parentElement;
+            sessionItem.classList.toggle('open');
+        }
+    </script>
 </body>
 </html>
