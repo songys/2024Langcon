@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>자주하는 질문 - Langcon 2024</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans KR', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #fff;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Navigation */
+        nav {
+            background: #1a1a2e;
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: 500;
+            padding: 8px 16px;
+            border-radius: 5px;
+            transition: background 0.3s;
+        }
+
+        nav a:hover, nav a.active {
+            background: #4a4a6a;
+        }
+
+        /* Header */
+        header {
+            text-align: center;
+            padding: 40px 20px;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            color: #fff;
+        }
+
+        header h1 {
+            font-size: 2rem;
+        }
+
+        /* FAQ Section */
+        .faq-section {
+            padding: 40px 20px;
+        }
+
+        .faq-item {
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+            overflow: hidden;
+        }
+
+        .faq-question {
+            background: #f8f9fa;
+            padding: 20px 25px;
+            font-weight: 600;
+            color: #1a1a2e;
+            border-left: 4px solid #4a4a6a;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .faq-question:hover {
+            background: #eef0f2;
+        }
+
+        .faq-question::before {
+            content: "Q. ";
+            color: #4a4a6a;
+            font-weight: 700;
+        }
+
+        .faq-answer {
+            padding: 20px 25px;
+            color: #555;
+            border-top: 1px solid #eee;
+        }
+
+        .faq-answer::before {
+            content: "A. ";
+            color: #4a4a6a;
+            font-weight: 700;
+        }
+
+        .faq-category {
+            color: #1a1a2e;
+            font-size: 1.3rem;
+            margin: 40px 0 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #4a4a6a;
+        }
+
+        .faq-category:first-of-type {
+            margin-top: 0;
+        }
+
+        /* Footer */
+        footer {
+            background: #1a1a2e;
+            color: #a0a0c0;
+            text-align: center;
+            padding: 30px 20px;
+        }
+
+        /* Archive Notice */
+        .archive-notice {
+            background: #fff3cd;
+            border: 1px solid #ffc107;
+            color: #856404;
+            padding: 15px 20px;
+            text-align: center;
+            font-size: 0.9rem;
+        }
+
+        .archive-notice a {
+            color: #856404;
+        }
+
+        /* Responsive */
+        @media (max-width: 600px) {
+            nav ul {
+                gap: 10px;
+            }
+
+            nav a {
+                padding: 6px 12px;
+                font-size: 0.9rem;
+            }
+
+            .faq-question, .faq-answer {
+                padding: 15px 18px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="archive-notice">
+        이 페이지는 Langcon 2024 행사의 아카이브입니다. 원본: <a href="https://2024langcon.oopy.io/langcon2024" target="_blank">2024langcon.oopy.io</a>
+    </div>
+
+    <nav>
+        <ul>
+            <li><a href="index.html">Langcon2024</a></li>
+            <li><a href="schedule.html">발표 및 스탭 안내</a></li>
+            <li><a href="history.html">이전대회</a></li>
+            <li><a href="faq.html" class="active">자주하는 질문</a></li>
+        </ul>
+    </nav>
+
+    <header>
+        <h1>자주하는 질문 (FAQ)</h1>
+    </header>
+
+    <section class="faq-section">
+        <div class="container">
+            <h2 class="faq-category">참가 관련</h2>
+
+            <div class="faq-item">
+                <div class="faq-question">현장신청이 가능한가요?</div>
+                <div class="faq-answer">참가신청 이후 추가 신청 또는 현장신청은 받지 않고 있습니다. 다만 발표자가 허락한 발표 자료와 영상은 추후 공개될 예정입니다.</div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">참가권 양도가 가능한가요?</div>
+                <div class="faq-answer">참가권 양도가 가능합니다. 이메일 주소와 성명을 알고 있으면 현장에서 양도를 알리고 등록할 수 있습니다.</div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">참가증을 받을 수 있나요?</div>
+                <div class="faq-answer">스탭에게 요청하고 이메일 주소를 제공하면 발급받을 수 있습니다.</div>
+            </div>
+
+            <h2 class="faq-category">행사 정보</h2>
+
+            <div class="faq-item">
+                <div class="faq-question">공식 해시태그가 무엇인가요?</div>
+                <div class="faq-answer">공식 해시태그는 <strong>#2024LangCon</strong>입니다. SNS를 통해 현장 사진과 후기 공유를 권장합니다.</div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">주차 지원이 되나요?</div>
+                <div class="faq-answer">주차 지원이 제공되지 않으므로 대중교통 이용을 권장합니다. 필요시 근처 연합뉴스 건물 주차장(토/일 저렴)을 이용할 수 있습니다.</div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">Wi-Fi가 제공되나요?</div>
+                <div class="faq-answer">Wi-Fi가 제공되지만 원활하지 않을 수 있습니다.</div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">행사 진행 관련 문의는 어떻게 하나요?</div>
+                <div class="faq-answer">'2024LangCon' 티셔츠를 입은 스탭에게 문의하시면 도움을 받을 수 있습니다.</div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>Langcon 2024 - 생성 모델 튜닝 어디까지 왔나?</p>
+        <p>#2024LangCon</p>
+    </footer>
+</body>
+</html>
