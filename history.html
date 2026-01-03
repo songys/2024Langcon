@@ -11,11 +11,24 @@
             box-sizing: border-box;
         }
 
+        :root {
+            --bg-primary: #0d1117;
+            --bg-secondary: #161b22;
+            --bg-tertiary: #21262d;
+            --text-primary: #e6edf3;
+            --text-secondary: #8b949e;
+            --border-color: #30363d;
+            --accent-mint: #3fb950;
+            --accent-blue: #58a6ff;
+            --accent-orange: #f78166;
+            --accent-purple: #a371f7;
+        }
+
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans KR', sans-serif;
             line-height: 1.6;
-            color: #333;
-            background-color: #fff;
+            color: var(--text-primary);
+            background-color: var(--bg-primary);
         }
 
         .container {
@@ -26,11 +39,12 @@
 
         /* Navigation */
         nav {
-            background: #1a1a2e;
+            background: var(--bg-secondary);
             padding: 15px 0;
             position: sticky;
             top: 0;
             z-index: 100;
+            border-bottom: 1px solid var(--border-color);
         }
 
         nav ul {
@@ -42,28 +56,38 @@
         }
 
         nav a {
-            color: #fff;
+            color: var(--text-secondary);
             text-decoration: none;
             font-weight: 500;
             padding: 8px 16px;
-            border-radius: 5px;
-            transition: background 0.3s;
+            border-radius: 6px;
+            transition: all 0.2s;
         }
 
-        nav a:hover, nav a.active {
-            background: #4a4a6a;
+        nav a:hover {
+            color: var(--text-primary);
+            background: var(--bg-tertiary);
+        }
+
+        nav a.active {
+            color: var(--accent-mint);
+            background: rgba(63, 185, 80, 0.1);
         }
 
         /* Header */
         header {
             text-align: center;
-            padding: 40px 20px;
-            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
-            color: #fff;
+            padding: 50px 20px;
+            background: var(--bg-secondary);
+            border-bottom: 1px solid var(--border-color);
         }
 
         header h1 {
             font-size: 2rem;
+            background: linear-gradient(135deg, var(--accent-mint), var(--accent-blue));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
 
         /* History Cards */
@@ -72,96 +96,112 @@
         }
 
         .history-card {
-            background: #fff;
-            border-radius: 15px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
-            margin-bottom: 30px;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            margin-bottom: 24px;
             overflow: hidden;
-            transition: transform 0.3s;
+            transition: all 0.3s;
         }
 
         .history-card:hover {
-            transform: translateY(-5px);
+            border-color: var(--accent-blue);
+            box-shadow: 0 0 20px rgba(88, 166, 255, 0.1);
+            transform: translateY(-2px);
         }
 
         .history-header {
-            background: linear-gradient(135deg, #1a1a2e, #4a4a6a);
-            color: #fff;
+            background: var(--bg-tertiary);
             padding: 20px 25px;
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .history-header::before {
+            content: ">";
+            color: var(--accent-mint);
+            font-family: 'Courier New', monospace;
+            font-weight: bold;
         }
 
         .history-header h2 {
-            font-size: 1.5rem;
-            margin-bottom: 5px;
+            font-size: 1.3rem;
+            color: var(--text-primary);
+            font-family: 'Courier New', monospace;
         }
 
         .history-body {
-            padding: 25px;
+            padding: 20px 25px;
         }
 
         .history-links {
             display: flex;
             flex-wrap: wrap;
-            gap: 15px;
-            margin-top: 15px;
+            gap: 12px;
         }
 
         .history-link {
             display: inline-flex;
             align-items: center;
             gap: 8px;
-            padding: 10px 18px;
-            background: #f8f9fa;
-            border-radius: 8px;
+            padding: 10px 16px;
+            border-radius: 6px;
             text-decoration: none;
-            color: #333;
             font-weight: 500;
-            transition: all 0.3s;
-        }
-
-        .history-link:hover {
-            background: #1a1a2e;
-            color: #fff;
-        }
-
-        .history-link.youtube {
-            background: #ff0000;
-            color: #fff;
-        }
-
-        .history-link.youtube:hover {
-            background: #cc0000;
+            font-size: 0.9rem;
+            transition: all 0.2s;
+            border: 1px solid transparent;
         }
 
         .history-link.website {
-            background: #0066cc;
-            color: #fff;
+            background: rgba(88, 166, 255, 0.1);
+            color: var(--accent-blue);
+            border-color: var(--accent-blue);
         }
 
         .history-link.website:hover {
-            background: #0052a3;
+            background: var(--accent-blue);
+            color: var(--bg-primary);
+        }
+
+        .history-link.youtube {
+            background: rgba(247, 129, 102, 0.1);
+            color: var(--accent-orange);
+            border-color: var(--accent-orange);
+        }
+
+        .history-link.youtube:hover {
+            background: var(--accent-orange);
+            color: var(--bg-primary);
+        }
+
+        /* Icons */
+        .history-link.website::before {
+            content: "🔗";
+        }
+
+        .history-link.youtube::before {
+            content: "▶";
         }
 
         /* Footer */
         footer {
-            background: #1a1a2e;
-            color: #a0a0c0;
+            background: var(--bg-secondary);
+            border-top: 1px solid var(--border-color);
+            color: var(--text-secondary);
             text-align: center;
             padding: 30px 20px;
         }
 
-        /* Archive Notice */
-        .archive-notice {
-            background: #fff3cd;
-            border: 1px solid #ffc107;
-            color: #856404;
-            padding: 15px 20px;
-            text-align: center;
-            font-size: 0.9rem;
+        footer p {
+            margin-bottom: 8px;
         }
 
-        .archive-notice a {
-            color: #856404;
+        footer .hashtag {
+            color: var(--accent-mint);
+            font-family: 'Courier New', monospace;
         }
 
         /* Responsive */
@@ -178,14 +218,14 @@
             .history-links {
                 flex-direction: column;
             }
+
+            .history-link {
+                justify-content: center;
+            }
         }
     </style>
 </head>
 <body>
-    <div class="archive-notice">
-        이 페이지는 Langcon 2024 행사의 아카이브입니다. 원본: <a href="https://2024langcon.oopy.io/langcon2024" target="_blank">2024langcon.oopy.io</a>
-    </div>
-
     <nav>
         <ul>
             <li><a href="index.html">Langcon2024</a></li>
@@ -266,7 +306,7 @@
 
     <footer>
         <p>Langcon 2024 - 생성 모델 튜닝 어디까지 왔나?</p>
-        <p>#2024LangCon</p>
+        <p class="hashtag">#2024LangCon</p>
     </footer>
 </body>
 </html>
